@@ -26,11 +26,11 @@ jobs:
 
       - name: Format
         run: |
-          vendor/bin/pint --config pint.json
-          npx prettier --write resources/js/**/*.{js,jsx} --config .prettierrc
-          npx prettier --write resources/css/**/*.css --config .prettierrc
-          npx blade-formatter --write resources/views/**/*.blade.php --config .bladeformatterrc.json
-          npx blade-formatter --write resources/views/*.blade.php --config .bladeformatterrc.json
+          vendor/bin/pint
+          npx prettier --write resources/js/**/*.{js,jsx}
+          npx prettier --write resources/css/**/*.css
+          npx blade-formatter --write resources/views/**/*.blade.php
+          npx blade-formatter --write resources/views/*.blade.php
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
