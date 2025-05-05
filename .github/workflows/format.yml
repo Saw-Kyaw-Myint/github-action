@@ -1,4 +1,4 @@
-name: Formatter
+name: Check Code Style
 on:
   push:
     branches:
@@ -8,10 +8,8 @@ on:
     - 'feature/**'
 
 jobs:
-  Formatter:
+  Format:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - name: Setup PHP Environment
         uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
@@ -24,7 +22,7 @@ jobs:
       - name: Run Laravel Pint
         id: run_pint
         run: |
-          if ! vendor/bin/pint --test; then
-            echo "Fail Format.Please run laravel pint."
+          if ! vendor/bin/pint --config ./pint.json --test; then
+            echo "Formatting failed. Please run Laravel Pint to fix the code style."
             exit 1
           fi
