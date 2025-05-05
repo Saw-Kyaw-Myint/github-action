@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Format php by laravel pint
+files=$(git diff --cached --name-only --diff-filter=AMCR -- '*.php')
+
+if [ -n "$files" ]; then
+  if ! ./vendor/bin/pint --config pint.json $files --dirty --test; then
+    echo "Please run Laravel Pint to fix formatting."
+    exit 1
+  fi
+else
+  echo "There are no *.php files to format."
+fi
