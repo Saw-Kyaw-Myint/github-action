@@ -5,7 +5,7 @@ files=$(git diff --cached --name-only --diff-filter=AMCR -- '*.php')
 
 if [ -n "$files" ]; then
   if ! ./vendor/bin/pint --config pint.json $files --dirty --test; then
-    echo "Please run Laravel Pint to fix formatting."
+    echo "Please run Laravel Pint (./vendor/bin/pint --config pint.json $files --dirty) to fix formatting."
     exit 1
   fi
 else
